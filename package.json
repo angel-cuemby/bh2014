@@ -1,6 +1,7 @@
 {
   "name": "commotion",
   "version": "0.0.0",
+  "main": "app.js",
   "dependencies": {
     "sendgrid": "~1.0.2",
     "usergrid": "~0.10.7",
