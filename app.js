@@ -24,14 +24,18 @@ var apigee = new usergrid.client({ orgName:'cuemby', appName:'sandbox' });
 
 // Routes & Actions Api
 
-var properties = { type: "call", outgoing: "7865034273", incomming: "2397451932"};
-apigee.createEntity(properties, function(error, response){
-	if (error){
-		console.log(error);
-	}else{
-		console.log(response.get());
-	}
-});
+
+
+
+
+// var properties = { type: "call", outgoing: "7865034273", incomming: "2397451932"};
+// apigee.createEntity(properties, function(error, response){
+// 	if (error){
+// 		console.log(error);
+// 	}else{
+// 		console.log(response.get());
+// 	}
+// });
 
 
 // sendgrid.send({
