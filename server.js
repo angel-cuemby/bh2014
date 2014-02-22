@@ -1,6 +1,8 @@
 'use strict';
 
 var express = require('express'),
+    Primus = require('primus'),
+    http = require('http'),
     path = require('path'),
     fs = require('fs'),
     mongoose = require('mongoose');
@@ -40,10 +42,20 @@ require('./lib/config/express')(app);
 // Routing
 require('./lib/routes')(app);
 
+// Creating http server
+var server = http.createServer(app);
+
+// Creating Primus server
+var primus = new Primus(server, { transformer: 'websockets' });
+
 // Start server
-app.listen(config.port, function () {
+server.listen(config.port, function () {
   console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
 });
 
+// Our primus stuff
+require('./commotion')(primus);
+
 // Expose app
 exports = module.exports = app;
+

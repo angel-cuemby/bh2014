@@ -9,7 +9,9 @@
     "connect-mongo": "~0.4.0",
     "passport": "latest",
     "passport-local": "latest",
-    "ejs": "~0.8.4"
+    "ejs": "~0.8.4",
+    "primus": "~2.0.2",
+    "ws": "~0.4.31"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
