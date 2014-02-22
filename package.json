@@ -1,0 +1,13 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "ws": "~0.4.31",
+    "express": "~3.4.8",
+    "primus": "~2.0.2"
+  }
+}
