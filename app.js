@@ -17,7 +17,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.errorHandler());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/www')));
 
 // Services setups
 var server = http.createServer(app);
@@ -28,10 +28,6 @@ paypal_sdk.configure({
     'port': '',
     'client_id': 'AStUfBBQojhluYi-LfUYYsJaA9WYjvbvcY2x3xdcx7gpHrpy-jsMTLUXkU4D',
     'client_secret': 'ELz08hChw4h2JbCFFSA7x_gmkQ_FMDGpyn-CJQ2vWxEzKNdRmE8EAFx51VG5'
-});
-
-app.get('/', function(req, res){
-    res.send("Que bola' asere!");
 });
 
 // Routes & Actions Api
