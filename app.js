@@ -23,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public/www')));
 var server = http.createServer(app);
 var primus = new Primus(server, { transformer: 'websockets' });
 var apigee = new usergrid.client({ orgName:'cuemby', appName:'sandbox' });
+var url = 'http://commotion.cuemby.com:5000/';
 paypal_sdk.configure({
     'host': 'api.sandbox.paypal.com',
     'port': '',
@@ -96,10 +97,22 @@ app.post('/voice-record/:username?', function(req, res) {
     action: 'http://commotion.cuemby.com:5000/callend',
     finishOnKey: '*'
   }, function() {
-    this.say('Connecting !', opt);
-  });
+    this.say('You are now connected !', opt);
+    this.say('Start talking. To send your message, press the pound key', opt);
+    this.record({ 
+        transcribeCallback: url+'/transcribed',
+        finishOnKey: '#'
+        playBeep: true,
+        timeout: 120,
+        maxLength: 120
+    });
   res.send(resp.toString());
-});
+  });
+
+app.post('/transcribed', function () {
+    var data = req.body;
+    console.log(data);
+})
 
 // Funtions
 
@@ -182,6 +195,15 @@ app.post('/voice-record/:username?', function(req, res) {
 
 primus.on('connection', function(socket) {
     socket.on('data', function (msg) {
+        if (msg.type == 'gesture') {
+            // translate to voice 
+            
+        }
+
+        if (msg.type == 'voice') {
+            
+        }
+
         console.log('Msg received: ', msg);
 
         if (msg === 'ping') {
