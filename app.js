@@ -75,7 +75,6 @@ app.post('/voice-record', function(req, res){
 
 // Funtions
 
-
 //var payment = {
 //    "intent": "sale",
 //    "payer": {
@@ -123,21 +122,15 @@ app.post('/voice-record', function(req, res){
 //    }
 //});
 
-
 // twilio.makeCall({
-
 //     to:'+7863612104', // Any number Twilio can call
 //     from: '+18052836298', // A number you bought from Twilio and can use for outbound communication
 //     url: 'http://www.example.com/twiml.php' // A URL that produces an XML document (TwiML) which contains instructions for the call
 
 // }, function(err, responseData) {
-
 //     //executed when the call has been initiated.
 //     console.log(responseData); // outputs "+14506667788"
-
 // });
-
-
 
 // var properties = { type: "call", outgoing: "7865034273", incomming: "2397451932"};
 // apigee.createEntity(properties, function(error, response){
