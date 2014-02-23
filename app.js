@@ -101,7 +101,7 @@ app.post('/voice-record/:username?', function(req, res) {
     this.say('Start talking. To send your message, press the pound key', opt);
     this.record({ 
         transcribeCallback: url+'/transcribed',
-        finishOnKey: '#'
+        finishOnKey: '#',
         playBeep: true,
         timeout: 120,
         maxLength: 120
