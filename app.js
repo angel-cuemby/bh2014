@@ -58,7 +58,7 @@ app.get('/call/:number', function(req, res){
     var promise = twilio.makeCall({
         to:'7863612104', // a number to call
         from:'8052836298', // a Twilio number you own
-        url:'http://commotion.cuemby.com/voice-record' // A URL containing TwiML instructions for the call
+        url:'http://commotion.cuemby.com:5000/voice-record' // A URL containing TwiML instructions for the call
     });
     promise.then(function(call) {
         console.log('Call success! Call SID: '+call.sid);
