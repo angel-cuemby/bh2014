@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CommMotion</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        <script src="/primus/primus.js"></script>
+    </head>
+    <body class="body">
+        <header class="mainheader">
+            <img scr="" >
+            <nav>
+                <ul>
+                    <li><a class ="active" href="#">Home</a></li>
+                    <li><a href="#">Menu Item</a></li>
+                    <li><a href="#">Menu Item</a></li>
+                    <li><a href="#">Menu Item</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="maincontent">
+            <div class="content">
+                <articles class="topcontent">
+                    <div class="post">
+                        <header class="post-title">
+                            <h2><a href="#">Battle Hack 2014</a></h2>
+                        </header>
+                        <footer>
+                            <p class="post-info">Written by Juan Lopez</p>
+                        </footer>
+                        <content>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
+                            mollit anim id est laborum."</p>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
+                            mollit anim id est laborum."</p>
+                        </content>
+                    </div><!-- post -->
+                </articles>
+            </div><!-- content -->
+        </div><!-- maincontent -->
+        <div class="sidebars">
+            <aside class="topsidebar">
+                <article>
+                    <h2>Top sidebar</h2>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
+                </article>
+            </aside>
+        </div>
+        <footer class="mainfooter">
+            <p>Copyright &copy; 2013. Juan Lopez.</p>
+            </footer>
+    <script>
+        var primus = new Primus;
+        primus.on('open', function () {
+            console.log('connection established');
+            primus.write('hello world!');
+        });
+
+        primus.on('data', function (data) {
+            console.log('msg received: ', data);
+        });
+    </script>
+    </body>
+</html>
