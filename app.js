@@ -62,16 +62,44 @@ app.get('/call/:number', function(req, res){
         console.error('Call failed!  Reason: '+error.message);
     });
 });
-app.post('/voice-record', function(req, res){
-    var resp = new twilio.TwimlResponse();
-    console.log(JSON.stringify(req.body));
-    resp.say('Welcome to Twilio!');
-    resp.say('Please let us know if we can help during your development.', {
-        voice:'woman',
-        language:'en-gb'
-    });
+
+app.get('/call/:number/:user', function(req, res) {
+  var promise = twilio.makeCall({
+    to: req.params.number,
+    from: '8052836298',
+    url: 'http://commotion.cuemby.com:5000/voice-record/' + req.params.user
+  });
+  promise.then(function(call) {
+    console.log('Call success! Call SID: ' + call.sid);
+  }, function(error) {
+    console.error('Call failed!  Reason: ' + error.message);
+  });
 });
 
+app.post('/voice-record/:username?', function(req, res) {
+  var twiml = require('twilio');
+  var resp = new twiml.TwimlResponse();
+  var opt = {
+    voice: 'woman',
+    language: 'en-gb'
+  };
+
+  console.log('VOICE-RECORD::REQ_BODY', req.body);
+  console.log('RESP::TWILIO', JSON.stringify(resp));
+  resp.say('Welcome CommMotion!', opt);
+  if (req.params.username) {
+    resp.say(req.params.username + ' is trying to call you!');
+  };
+  resp.say('One moment please ...', opt);
+  resp.gather({
+    timeout: 30,
+    action: 'http://commotion.cuemby.com:5000/callend',
+    finishOnKey: '*'
+  }, function() {
+    this.say('Connecting !', opt);
+  });
+  res.send(resp.toString());
+});
 
 // Funtions
 
@@ -152,16 +180,16 @@ app.post('/voice-record', function(req, res){
 //   console.log(json);
 // });
 
-// primus.on('connection', function(socket) {
-//     socket.on('data', function (msg) {
-//         console.log('Msg received: ', msg);
+primus.on('connection', function(socket) {
+    socket.on('data', function (msg) {
+        console.log('Msg received: ', msg);
 
-//         if (msg === 'ping') {
-//             socket.write({ reply: 'pong' });
-//         }
+        if (msg === 'ping') {
+            socket.write({ reply: 'pong' });
+        }
 
-//     });
-// });
+    });
+});
 
 server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
